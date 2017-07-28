@@ -27,21 +27,27 @@ export default {
      * @param {*} object
      * @return {boolean}
      */
-    isUndefined: object => typeof(object) === 'undefined',
+    isUndefined(object) {
+        return typeof(object) === 'undefined';
+    },
 
     /**
      * 对象是否为字符串类型.
      * @param {*} object
      * @return {boolean}
      */
-    isString: object => toString.call(object) === '[object String]',
+    isString(object) {
+        return toString.call(object) === '[object String]';
+    },
 
     /**
      * 判断对象是否布尔值.
      * @param {*} object
      * @return {boolean}
      */
-    isBoolean: object => toString.call(object) === '[object boolean]',
+    isBoolean(object) {
+        return toString.call(object) === '[object boolean]';
+    },
 
     /**
      * 判断对象是否为数字类型.
@@ -49,7 +55,7 @@ export default {
      * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即object为string类型且满足数字的格式也被认定为数字类型
      * @return {boolean}
      */
-    isNumber: (object, strict = false) => {
+    isNumber(object, strict = false) {
         if (toString.call(object) === '[object Number]') {
             return true;
         }
@@ -63,7 +69,7 @@ export default {
      * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即当object为字符串的值也满足浮点格式也被认定为浮点数
      * @return {boolean}
      */
-    isFloat: (object, strict = false) => {
+    isFloat(object, strict = false) {
         if ( !this.isString(object) && !this.isNumber(object, true)) {
             return false;
         }
@@ -77,7 +83,7 @@ export default {
      * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即当object为字符串的值也满足整型格式也被认定为整型数
      * @return {boolean}
      */
-    isInteger: (object, strict = false) => {
+    isInteger(object, strict = false) {
         if (!this.isString(object) && !this.isNumber(object, true)) {
             return false;
         }
@@ -90,14 +96,16 @@ export default {
      * @param {*} object
      * @return {boolean}
      */
-    isObject: object => typeof(object) === 'object' && object !== null,
+    isObject(object) {
+        return typeof(object) === 'object' && object !== null;
+    },
 
     /**
      * 判断对象是否函数.
      * @param {*} object
      * @return {boolean}
      */
-    isFunction: object => {
+    isFunction(object) {
         return typeof(object) === 'function' ||
             this.isObject(object) && toString.call(object) === '[object Function]';
     },
@@ -107,28 +115,34 @@ export default {
      * @param {*} object
      * @return {boolean}
      */
-    isArray: object => toString.call(object) === '[object Array]',
+    isArray(object) {
+        return toString.call(object) === '[object Array]';
+    },
 
     /**
      * 判断对象是否日期.
      * @param {*} object
      * @return {boolean}
      */
-    isDate: object => toString.call(object) === '[object Date]',
+    isDate(object) {
+        return toString.call(object) === '[object Date]';
+    },
 
     /**
      * 判断对象是否正则对象.
      * @param {*} object
      * @return {boolean}
      */
-    isRegExp: object => toString.call(object) === '[object RegExp]',
+    isRegExp(object) {
+        return toString.call(object) === '[object RegExp]';
+    },
 
     /**
      * 判断是否为jQuery对象.
      * @param {*} object
      * @returns {boolean}
      */
-    isJQuery: object => {
+    isJQuery(object) {
         return this.isObject(object) && this.isString(object.jquery) ||
             this.isFunction(object) && this.isString(object.prototype.jquery);
     },
@@ -138,7 +152,9 @@ export default {
      * @param {*} object
      * @return {boolean}
      */
-    isHTMLElement: object => object instanceof HTMLElement,
+    isHTMLElement(object) {
+        return object instanceof HTMLElement;
+    },
 
     /**
      * 判断对象是否颜色值.
@@ -151,7 +167,7 @@ export default {
      *      传入数组例如[rgbColorType, rgbColorType],则判断是否是这两种颜色中的一种
      * @return {boolean}
      */
-    isColor: (object, types) => {
+    isColor(object, types) {
         if (this.isString(types)) {
             types = [types];
         } else if (!this.isArray(types)) {
@@ -176,5 +192,7 @@ export default {
      * @param {string} object
      * @return {boolean}
      */
-    isIP: object => ipPattern.test(object)
+    isIP(object) {
+        return ipPattern.test(object);
+    }
 };
