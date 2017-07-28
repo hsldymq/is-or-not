@@ -74,7 +74,7 @@ export default {
             return false;
         }
 
-        return (!strict || strict && _.isNumber(object, true)) && /^[-|+]?\d*\.\d+$/.test(object);
+        return (!strict || strict && this.isNumber(object, true)) && /^[-|+]?\d*\.\d+$/.test(object);
     },
 
     /**
@@ -126,6 +126,15 @@ export default {
      */
     isDate(object) {
         return toString.call(object) === '[object Date]';
+    },
+
+    /**
+     * 是否是Symbol类型.
+     * @param {*} object
+     * @returns {boolean}
+     */
+    isSymbol(object) {
+        return typeof(object) === 'symbol';
     },
 
     /**
