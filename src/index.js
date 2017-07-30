@@ -25,7 +25,7 @@ export default {
     /**
      * 判断对象是否为undefined.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isUndefined(object) {
         return typeof(object) === 'undefined';
@@ -34,7 +34,7 @@ export default {
     /**
      * 对象是否为字符串类型.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isString(object) {
         return toString.call(object) === '[object String]';
@@ -43,17 +43,17 @@ export default {
     /**
      * 判断对象是否布尔值.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isBoolean(object) {
-        return toString.call(object) === '[object boolean]';
+        return toString.call(object) === '[object Boolean]';
     },
 
     /**
      * 判断对象是否为数字类型.
      * @param {*} object
      * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即object为string类型且满足数字的格式也被认定为数字类型
-     * @return {boolean}
+     * @returns {boolean}
      */
     isNumber(object, strict = false) {
         if (toString.call(object) === '[object Number]') {
@@ -67,7 +67,7 @@ export default {
      * 判断对象是否为浮点数.
      * @param {*} object
      * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即当object为字符串的值也满足浮点格式也被认定为浮点数
-     * @return {boolean}
+     * @returns {boolean}
      */
     isFloat(object, strict = false) {
         if ( !this.isString(object) && !this.isNumber(object, true)) {
@@ -81,7 +81,7 @@ export default {
      * 判断对象是否为整型数.
      * @param {*} object
      * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即当object为字符串的值也满足整型格式也被认定为整型数
-     * @return {boolean}
+     * @returns {boolean}
      */
     isInteger(object, strict = false) {
         if (!this.isString(object) && !this.isNumber(object, true)) {
@@ -94,7 +94,7 @@ export default {
     /**
      * 对象是否为Object对象.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isObject(object) {
         return typeof(object) === 'object' && object !== null;
@@ -103,7 +103,7 @@ export default {
     /**
      * 判断对象是否函数.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isFunction(object) {
         return typeof(object) === 'function' ||
@@ -113,7 +113,7 @@ export default {
     /**
      * 判断对象是否数组.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isArray(object) {
         return toString.call(object) === '[object Array]';
@@ -122,7 +122,7 @@ export default {
     /**
      * 判断对象是否日期.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isDate(object) {
         return toString.call(object) === '[object Date]';
@@ -140,7 +140,7 @@ export default {
     /**
      * 判断对象是否正则对象.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isRegExp(object) {
         return toString.call(object) === '[object RegExp]';
@@ -159,7 +159,7 @@ export default {
     /**
      * 判断对象是否为HTML DOM对象.
      * @param {*} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isHTMLElement(object) {
         return object instanceof HTMLElement;
@@ -174,7 +174,7 @@ export default {
      *      默认判断是否是这五种颜色中的一种
      *      传入以上五种类型任意一种(例如hexColorType)即判断是否是这种类型的字符串
      *      传入数组例如[rgbColorType, rgbColorType],则判断是否是这两种颜色中的一种
-     * @return {boolean}
+     * @returns {boolean}
      */
     isColor(object, types) {
         if (this.isString(types)) {
@@ -199,7 +199,7 @@ export default {
     /**
      * 判断对象是否是IP地址
      * @param {string} object
-     * @return {boolean}
+     * @returns {boolean}
      */
     isIP(object) {
         return ipPattern.test(object);
