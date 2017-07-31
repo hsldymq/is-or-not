@@ -7,6 +7,7 @@ const hslaColorType = Symbol();
 const toString = Object.prototype.toString;
 
 const ipPattern = /^(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\.(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){3}$/;
+const numberPattern = /^[-+]?(?:\d+|\d*\.\d+)(?:e[-+]?\d+)?$/i;
 const colorPatterns = {
     [hexColorType]: /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i,
     [rgbColorType]: /^rgb\(\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\s*,\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){2}\s*\)$/,
@@ -60,21 +61,7 @@ export default {
             return true;
         }
 
-        return !strict && this.isString(object) && /^[-|+]?(?:\d+|\d*\.\d+)$/.test(object);
-    },
-
-    /**
-     * 判断对象是否为浮点数.
-     * @param {*} object
-     * @param {boolean} [strict=false] - 是否严格判断,默认非严格,即当object为字符串的值也满足浮点格式也被认定为浮点数
-     * @returns {boolean}
-     */
-    isFloat(object, strict = false) {
-        if ( !this.isString(object) && !this.isNumber(object, true)) {
-            return false;
-        }
-
-        return (!strict || strict && this.isNumber(object, true)) && /^[-|+]?\d*\.\d+$/.test(object);
+        return !strict && this.isString(object) && numberPattern.test(object);
     },
 
     /**
@@ -84,11 +71,14 @@ export default {
      * @returns {boolean}
      */
     isInteger(object, strict = false) {
-        if (!this.isString(object) && !this.isNumber(object, true)) {
-            return false;
+        if (this.isNumber(object, true)) {
+            return Number.isInteger(object);
+        }
+        if (!strict && this.isString(object)) {
+            return numberPattern.test(object) && Number.isInteger(Number(object));
         }
 
-        return (!strict || strict && this.isNumber(object, true)) && /^[-|+]?\d+$/.test(object);
+        return false;
     },
 
     /**
