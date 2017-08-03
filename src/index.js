@@ -101,12 +101,12 @@ export default {
     },
 
     /**
-     * 判断对象是否数组.
+     * 是否是Symbol类型.
      * @param {*} object
      * @returns {boolean}
      */
-    isArray(object) {
-        return toString.call(object) === '[object Array]';
+    isSymbol(object) {
+        return typeof(object) === 'symbol' || toString.call(object) === '[object Symbol]';
     },
 
     /**
@@ -116,15 +116,6 @@ export default {
      */
     isDate(object) {
         return toString.call(object) === '[object Date]';
-    },
-
-    /**
-     * 是否是Symbol类型.
-     * @param {*} object
-     * @returns {boolean}
-     */
-    isSymbol(object) {
-        return typeof(object) === 'symbol';
     },
 
     /**

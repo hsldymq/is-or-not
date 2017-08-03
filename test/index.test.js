@@ -167,3 +167,59 @@ describe('测试isInteger方法', () => {
         expect(ion.isInteger('')).to.not.be.ok;
     });
 });
+
+describe('测试isObject方法', () => {
+    it('对象字面量应该被判定为对象', () => {
+        expect(ion.isObject({})).to.be.ok;
+    });
+
+    it('new的对象应该被判定为对象', () => {
+        expect(ion.isObject(new Number())).to.be.ok;
+    });
+
+    it('正则表达式字面量应该被判定为对象', () => {
+        expect(ion.isObject(/^a$/)).to.be.ok;
+    });
+
+    it('new Function不应该被判定为对象', () => {
+        expect(ion.isObject(new Function())).to.not.be.ok;
+    });
+
+    it('null不应该被判定为对象', () => {
+        expect(ion.isObject(null)).to.not.be.ok;
+    });
+
+    it('undefined不应该被判定为对象', () => {
+        expect(ion.isObject(undefined)).to.not.be.ok;
+    });
+});
+
+describe('测试isFunction方法', () => {
+    it('new Function应该被判定为函数', () => {
+        expect(ion.isFunction(new Function())).to.be.ok;
+    });
+
+    it('匿名函数应该被判定为函数', () => {
+        let func = function () {return 1;}
+        expect(ion.isFunction(function () {return 1;})).to.be.ok;
+        expect(ion.isFunction(func)).to.be.ok;
+    });
+
+    it('箭头函数应该被判定为函数', () => {
+        expect(ion.isFunction(() => {})).to.be.ok;
+    });
+
+    it('constructor应该被判定为函数', () => {
+        expect(ion.isFunction(Number.constructor)).to.be.ok;
+    });
+});
+
+describe('测试isSymbol方法', () => {
+    it('Symbol()应该被判定为symbol', () => {
+        expect(ion.isSymbol(Symbol())).to.be.ok;
+    });
+
+    it('Symbol包装对象应该被判定为函数', () => {
+        expect(ion.isSymbol(Object(Symbol()))).to.be.ok;
+    });
+});
