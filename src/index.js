@@ -1,20 +1,20 @@
-const hexColorType = Symbol();
-const rgbColorType = Symbol();
-const rgbaColorType = Symbol();
-const hslColorType = Symbol();
-const hslaColorType = Symbol();
+const hexColorType = Symbol(),
+      rgbColorType = Symbol(),
+      rgbaColorType = Symbol(),
+      hslColorType = Symbol(),
+      hslaColorType = Symbol();
 
 const toString = Object.prototype.toString;
 
-const ipPattern = /^(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\.(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){3}$/;
-const numberPattern = /^[-+]?(?:\d+|\d*\.\d+)(?:e[-+]?\d+)?$/i;
-const colorPatterns = {
-    [hexColorType]: /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i,
-    [rgbColorType]: /^rgb\(\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\s*,\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){2}\s*\)$/,
-    [rgbaColorType]: /^rgba?\(\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\s*,\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){2}\s*,\s*(?:0|1(?:\.0)?|0?\.\d)\s*\)$/,
-    [hslColorType]: /^hsl\(\s*(?:3(?:60|[0-5]\d)|[12]\d{2}|[1-9]?\d)(?:\s*,\s*(?:(?:100|[1-9]?\d)(?:\.\d)?)%){2}\s*\)$/,
-    [hslaColorType]: /^hsla\(\s*(?:3(?:60|[0-5]\d)|[12]\d{2}|[1-9]?\d)(?:\s*,\s*(?:(?:100(?:\.0)?|[1-9]?\d)(?:\.\d)?)%){2}(?:\s*,\s*(?:0|1(?:\.0)?|0?\.\d))?\s*\)$/
-};
+const ipv4Pattern = /^(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\.(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){3}$/,
+      numberPattern = /^[-+]?(?:\d+|\d*\.\d+)(?:e[-+]?\d+)?$/i,
+      colorPatterns = {
+          [hexColorType]: /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i,
+          [rgbColorType]: /^rgb\(\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\s*,\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){2}\s*\)$/,
+          [rgbaColorType]: /^rgba?\(\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)(?:\s*,\s*(?:2(?:[0-4]\d|5[0-5])|1\d{2}|[1-9]?\d)){2}\s*,\s*(?:0|1(?:\.0)?|0?\.\d)\s*\)$/,
+          [hslColorType]: /^hsl\(\s*(?:3(?:60|[0-5]\d)|[12]\d{2}|[1-9]?\d)(?:\s*,\s*(?:(?:100|[1-9]?\d)(?:\.\d)?)%){2}\s*\)$/,
+          [hslaColorType]: /^hsla\(\s*(?:3(?:60|[0-5]\d)|[12]\d{2}|[1-9]?\d)(?:\s*,\s*(?:(?:100(?:\.0)?|[1-9]?\d)(?:\.\d)?)%){2}(?:\s*,\s*(?:0|1(?:\.0)?|0?\.\d))?\s*\)$/
+      };
 
 export default {
     hexColorType: hexColorType,
@@ -128,25 +128,6 @@ export default {
     },
 
     /**
-     * 判断是否为jQuery对象.
-     * @param {*} object
-     * @returns {boolean}
-     */
-    isJQuery(object) {
-        return this.isObject(object) && this.isString(object.jquery) ||
-            this.isFunction(object) && this.isString(object.prototype.jquery);
-    },
-
-    /**
-     * 判断对象是否为HTML DOM对象.
-     * @param {*} object
-     * @returns {boolean}
-     */
-    isHTMLElement(object) {
-        return object instanceof HTMLElement;
-    },
-
-    /**
      * 判断对象是否颜色值.
      * 支持判断HEX,RGB(A),HSL(A)5种类型的颜色.
      * e.g. #A5B412|rgb(121, 23, 5)|rgba(123, 51, 1, 0.2)|hsl(320, 50%, 100%)|hsla(210, 12%, 5%, 0.5).
@@ -182,7 +163,7 @@ export default {
      * @param {string} object
      * @returns {boolean}
      */
-    isIP(object) {
-        return ipPattern.test(object);
+    isIPv4(object) {
+        return ipv4Pattern.test(object);
     }
 };

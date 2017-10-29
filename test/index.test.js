@@ -223,3 +223,27 @@ describe('测试isSymbol方法', () => {
         expect(ion.isSymbol(Object(Symbol()))).to.be.ok;
     });
 });
+
+describe('测试isDate方法', () => {
+    it('判定Date对象应该返回true', () => {
+        expect(ion.isDate(new Date())).to.be.ok;
+    });
+
+    it('判定非Date对象应该返回false', () => {
+        expect(ion.isDate(function () {})).to.not.be.ok;
+    });
+});
+
+describe('测试isRegExp方法', () => {
+    it('判定正则常量应该返回true', () => {
+        expect(ion.isRegExp(/test/)).to.be.ok;
+    });
+
+    it('判定正则对象应该返回true', () => {
+        expect(ion.isRegExp(new RegExp('test'))).to.be.ok;
+    });
+
+    it('判定非正则应该返回false', () => {
+        expect(ion.isRegExp(123)).to.not.be.ok;
+    });
+});
