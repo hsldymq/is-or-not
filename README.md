@@ -1,1 +1,1 @@
-# is-or-not
+# whether-or-not
